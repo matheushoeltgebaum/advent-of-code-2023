@@ -24,15 +24,11 @@ const processInput = (input) => {
 const processScratchcards = (scratchcards) => {
     for (let i = 0; i < scratchcards.length; i++) {
         let scratchcard = scratchcards[i];
-
-        for (let j = 0; j < scratchcard.count; j++) {
-            let copies = getCountOfCopies(scratchcard.numbersOwned, scratchcard.winningNumbers);
-    
-            for (let k = 0; k < copies; k++) {
-                scratchcards[i + 1 + k].count++;
-            }
+        let copies = getCountOfCopies(scratchcard.numbersOwned, scratchcard.winningNumbers);
+        let nextIndex = i + 1;
+        for (let j = nextIndex; j < copies + nextIndex; j++) {
+            scratchcards[j].count += scratchcard.count;
         }
-
     }
 };
 
